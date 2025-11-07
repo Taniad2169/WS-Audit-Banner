@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The WebSwan State Compliance</title>
 <style>
+  /* FIX: Added smooth scroll to the HTML element */
+  html {
+      scroll-behavior: smooth; 
+  }
+
   body {
     margin: 0;
     min-height: 100vh; 
@@ -125,42 +130,53 @@
   }
   
   .state-button {
-      background-color: #14395d; /* Dark Blue */
-      color: #daf7f3; /* Light Cyan Text */
+      /* Applied linear gradient to State Buttons */
+      background: linear-gradient(90deg, #3acf9a, #5bd9d7); 
+      /* FIX: Confirmed Snow White Text */
+      color: white; 
       padding: 10px 15px;
-      border: 1px solid #2ebfac;
+      /* FIX: Added prominent white border */
+      border: 2px solid white; 
       border-radius: 5px;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700; /* Bold text */
       font-size: 0.9rem;
-      transition: background-color 0.3s, transform 0.1s;
+      transition: all 0.2s; 
       white-space: nowrap; 
+      /* FIX: Added 3D shadow with subtle white glow and dark lift */
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.2), 
+                  3px 3px 6px rgba(0, 0, 0, 0.6); 
   }
 
   .state-button:hover {
-      background-color: #2ebfac; /* Cyan on hover */
-      color: #14395d; /* Dark blue text on hover */
-      transform: translateY(-1px);
+      opacity: 0.9; 
+      /* Pressed effect: moves down and slightly changes shadow */
+      transform: translateY(1px); 
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.2), 
+                  1px 1px 2px rgba(0, 0, 0, 0.6); 
   }
 
   #main-audit-button {
       display: block;
       width: fit-content;
       margin: 0 auto 20px auto;
-      background-color: #2ebfac; /* Use Cyan as a primary action color */
-      color: #14395d; /* Dark Blue Text */
+      /* Main button gradient */
+      background: linear-gradient(45deg, #14395d, #3acf9a, #b1dff2); 
+      color: white; 
+      font-weight: 700; 
+      
       padding: 12px 25px;
       border: 2px solid white;
       border-radius: 8px;
       text-decoration: none;
-      font-weight: 800;
       font-size: 1.1rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
   }
 
   #main-audit-button:hover {
-      background-color: #daf7f3;
+      /* Adjusted hover effect to darken the gradient slightly */
+      opacity: 0.9;
       transform: translateY(-2px);
       box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
   }
@@ -222,13 +238,14 @@
 </head>
 <body>
 
-<div class="banner" id="review">
+<div class="banner" id="audit">
   The WebSwan State Attorney Compliance & ADA
   
   <span class="emoji">♿</span>
   <span class="emoji">⚖️</span>
   <span class="emoji">🚨</span>
   <span class="emoji">💼</span>
+  <span class="emoji">💰</span> 
   
   <a href="https://taniad2169.github.io/WS-Audit/" target="_blank" id="main-audit-button">
       Click Here for Your Website Compliance and ADA Audit!
