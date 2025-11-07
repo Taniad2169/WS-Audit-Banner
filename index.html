@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The WebSwan State Compliance</title>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh; 
+    background: radial-gradient(circle at center, rgba(20, 57, 93, 0.2), rgba(0, 0, 0, 0.9));
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+  }
+
+  .banner {
+    position: relative;
+    text-align: center;
+    font-weight: 700;
+    
+    color: white; 
+    
+    /* Slightly reduced font size to make room for new elements */
+    font-size: 2.0rem; 
+    background: transparent; 
+    border: none; 
+    border-radius: 25px;
+    /* Reduced padding slightly to fit more content */
+    padding: 40px 30px; 
+    
+    max-width: 800px;
+    width: 90%;
+    margin: 50px auto; 
+    
+    box-shadow: 0 0 40px rgba(46, 191, 172, 0.5); 
+    overflow: hidden; 
+    animation: textGlow 3s ease-in-out infinite alternate;
+    backdrop-filter: blur(3px);
+  }
+
+  /* Light shimmer effect moving across text */
+  .banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(20, 57, 93, 0.1), rgba(255,255,255,0.7), rgba(20, 57, 93, 0.1));
+    animation: shimmer 5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { left: -75%; }
+    100% { left: 125%; }
+  }
+
+  @keyframes textGlow {
+    0% { text-shadow: 0 0 10px rgba(46, 191, 172, 0.3); } 
+    100% { text-shadow: 0 0 25px rgba(46, 191, 172, 0.9); } 
+  }
+
+  .emoji {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    
+    font-size: 3.5rem;
+    opacity: 0; 
+    pointer-events: none;
+    color: #daf7f3; 
+  }
+
+  @keyframes slideInScaleFade {
+    0% {
+      opacity: 1; 
+      transform: translate(-50%, -50%) scale(0.5); 
+    }
+    40% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.3); 
+    }
+    80% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1); 
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.7); 
+    }
+  }
+
+  /* Sparkle effect */
+  .sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #daf7f3;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: float 8s linear infinite;
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(0);
+      opacity: 0.8;
+    }
+    to {
+      transform: translateY(-300px);
+      opacity: 0;
+    }
+  }
+  
+  /* --- STYLES FOR LINKS AND BUTTONS --- */
+  
+  #state-links {
+      display: flex;
+      flex-wrap: wrap; 
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+  }
+  
+  .state-button {
+      background-color: #14395d; /* Dark Blue */
+      color: #daf7f3; /* Light Cyan Text */
+      padding: 10px 15px;
+      border: 1px solid #2ebfac;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background-color 0.3s, transform 0.1s;
+      white-space: nowrap; 
+  }
+
+  .state-button:hover {
+      background-color: #2ebfac; /* Cyan on hover */
+      color: #14395d; /* Dark blue text on hover */
+      transform: translateY(-1px);
+  }
+
+  #main-audit-button {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 20px auto;
+      background-color: #2ebfac; /* Use Cyan as a primary action color */
+      color: #14395d; /* Dark Blue Text */
+      padding: 12px 25px;
+      border: 2px solid white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  #main-audit-button:hover {
+      background-color: #daf7f3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  .contact-info {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #daf7f3; /* Light Cyan */
+      margin-top: 15px;
+      line-height: 1.4;
+      padding-top: 15px;
+      border-top: 1px dashed rgba(46, 191, 172, 0.4);
+  }
+  
+  .contact-info a {
+      color: #2ebfac; /* Cyan link color */
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.3s;
+  }
+  
+  .contact-info a:hover {
+      color: white;
+  }
+
+  /* --- RESPONSIVENESS --- */
+  @media (max-width: 600px) {
+    .banner {
+      font-size: 1.4rem; 
+      padding: 30px 15px; 
+      word-break: break-word; 
+    }
+    
+    .emoji {
+      font-size: 2rem; 
+    }
+    
+    .state-button {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+    
+    .contact-info {
+        font-size: 1rem;
+    }
+
+    #main-audit-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+  }
+
+  @media (max-width: 380px) {
+      .state-button {
+          flex-basis: 100%; 
+      }
+  }
+</style>
+</head>
+<body>
+
+<div class="banner" id="review">
+  The WebSwan State Attorney Compliance & ADA
+  
+  <span class="emoji">♿</span>
+  <span class="emoji">⚖️</span>
+  <span class="emoji">🚨</span>
+  <span class="emoji">💼</span>
+  
+  <a href="https://taniad2169.github.io/WS-Audit/" target="_blank" id="main-audit-button">
+      Click Here for Your Website Compliance and ADA Audit!
+  </a>
+
+  <div id="state-links">
+      <a href="https://practiceguides.chambers.com/practice-guides/data-protection-privacy-2025/usa-georgia/trends-and-developments" target="_blank" class="state-button">Georgia: Click Here to View</a>
+      <a href="https://cppa.ca.gov/announcements/2024/20241217.html" target="_blank" class="state-button">California: Click Here to View</a>
+      <a href="https://equidox.co/resources/accessibility-education-tools/accessibility-regulations/usa-florida/" target="_blank" class="state-button">Florida: Click Here to View</a>
+      <a href="https://www.google.com/search?q=new+york+consumer+protection+law+on+website+compliance" target="_blank" class="state-button">New York: Click Here to View</a>
+      <a href="https://www.sll.texas.gov/spotlight/2024/07/texas-data-privacy-and-security-act/" target="_blank" class="state-button">Texas: Click Here to View</a>
+  </div>
+  
+  <div class="contact-info">
+      Call or text for your **FREE compliance audit** (limited time only) or if you are interested in a **full website performance analysis** ($195).<br>
+      <a href="tel:4158770687">(415) 877-0687</a>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    const banner = document.querySelector('.banner');
+    if (!banner) return; 
+    
+    const emojis = document.querySelectorAll('.emoji');
+    
+    let index = 0;
+
+    function animateEmoji() {
+      if (emojis.length === 0) {
+          return;
+      }
+      
+      emojis.forEach(e => {
+        e.style.opacity = 0;
+        e.style.animation = 'none';
+      });
+
+      const emoji = emojis[index];
+      
+      if (!emoji) {
+          index = 0;
+          setTimeout(animateEmoji, 100);
+          return;
+      }
+      
+      emoji.style.animation = 'slideInScaleFade 3.5s ease forwards';
+      
+      index = (index + 1) % emojis.length; 
+      setTimeout(animateEmoji, 1500);
+    }
+
+    animateEmoji();
+
+    // Floating sparkles
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * banner.offsetWidth + 'px';
+      sparkle.style.top = banner.offsetHeight + 'px';
+      sparkle.style.animationDuration = (4 + Math.random() * 4) + 's';
+      sparkle.style.opacity = Math.random();
+      banner.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 8000);
+    }
+
+    setInterval(createSparkle, 400);
+  })(); 
+</script>
+
+</body>
+</html>
