@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The WebSwan State Compliance</title>
+<title>The WebSwan Website States Attorney Compliance and ADA</title>
 <style>
-  /* FIX: Added smooth scroll to the HTML element */
   html {
       scroll-behavior: smooth; 
   }
@@ -22,28 +21,21 @@
     position: relative;
     text-align: center;
     font-weight: 700;
-    
     color: white; 
-    
-    /* Slightly reduced font size to make room for new elements */
     font-size: 2.0rem; 
     background: transparent; 
     border: none; 
     border-radius: 25px;
-    /* Reduced padding slightly to fit more content */
     padding: 40px 30px; 
-    
     max-width: 800px;
     width: 90%;
     margin: 50px auto; 
-    
     box-shadow: 0 0 40px rgba(46, 191, 172, 0.5); 
     overflow: hidden; 
     animation: textGlow 3s ease-in-out infinite alternate;
     backdrop-filter: blur(3px);
   }
 
-  /* Light shimmer effect moving across text */
   .banner::before {
     content: "";
     position: absolute;
@@ -65,35 +57,179 @@
     100% { text-shadow: 0 0 25px rgba(46, 191, 172, 0.9); } 
   }
 
-  .emoji {
+  /* Emoji positioning on sides */
+  .emoji-left, .emoji-right {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    
+    transform: translateY(-50%) scale(0);
     font-size: 3.5rem;
     opacity: 0; 
     pointer-events: none;
     color: #daf7f3; 
   }
 
+  .emoji-left {
+    left: 10%;
+  }
+
+  .emoji-right {
+    right: 10%;
+  }
+
   @keyframes slideInScaleFade {
     0% {
       opacity: 1; 
-      transform: translate(-50%, -50%) scale(0.5); 
+      transform: translateY(-50%) scale(0.5); 
     }
     40% {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1.3); 
+      transform: translateY(-50%) scale(1.3); 
     }
     80% {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1); 
+      transform: translateY(-50%) scale(1); 
     }
     100% {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0.7); 
+      transform: translateY(-50%) scale(0.7); 
     }
+  }
+
+  /* State Dropdown Styles */
+  .state-dropdown-container {
+    margin: 25px auto;
+    max-width: 350px;
+    position: relative;
+  }
+
+  #state-dropdown {
+    width: 100%;
+    padding: 15px 20px;
+    background: #f4f736; /* Bright yellow background */
+    color: #f74036; /* Red text color */
+    border: 3px solid #f74036;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 900; /* Extra bold */
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(247, 64, 54, 0.4), 4px 4px 8px rgba(0, 0, 0, 0.7);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23f74036' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  #state-dropdown:hover {
+    background: #f7f95c;
+    box-shadow: 0 0 20px rgba(247, 64, 54, 0.6), 6px 6px 12px rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+  }
+
+  #state-dropdown option {
+    background: #14395d;
+    color: white;
+    padding: 12px;
+    font-weight: 700;
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+  }
+
+  .modal-content {
+    position: relative;
+    background: linear-gradient(135deg, #14395d, #1a4a7a);
+    margin: 3% auto;
+    padding: 35px;
+    border-radius: 20px;
+    max-width: 750px;
+    width: 85%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: 3px solid #3acf9a;
+    box-shadow: 0 0 40px rgba(46, 191, 172, 0.8);
+    color: white;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    z-index: 1001;
+  }
+
+  .close-modal:hover {
+    color: #3acf9a;
+    transform: scale(1.1);
+  }
+
+  .state-content {
+    text-align: left;
+    line-height: 1.7;
+  }
+
+  .state-content h2 {
+    color: #3acf9a;
+    border-bottom: 3px solid #3acf9a;
+    padding-bottom: 15px;
+    margin-top: 0;
+    font-size: 2rem;
+  }
+
+  .state-content h3 {
+    color: #5bd9d7;
+    margin-top: 25px;
+    font-size: 1.4rem;
+  }
+
+  .state-content ul {
+    padding-left: 25px;
+  }
+
+  .state-content li {
+    margin-bottom: 12px;
+  }
+
+  .news-date {
+    background: rgba(58, 207, 154, 0.2);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-weight: 700;
+    border-left: 4px solid #3acf9a;
+  }
+
+  .penalty-warning {
+    background: rgba(255, 68, 68, 0.15);
+    border: 2px solid #ff4444;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+  }
+
+  .penalty-warning h3 {
+    color: #ff6b6b;
+    margin-top: 0;
   }
 
   /* Sparkle effect */
@@ -118,8 +254,7 @@
     }
   }
   
-  /* --- STYLES FOR LINKS AND BUTTONS --- */
-  
+  /* Other existing styles remain the same */
   #state-links {
       display: flex;
       flex-wrap: wrap; 
@@ -130,27 +265,22 @@
   }
   
   .state-button {
-      /* Applied linear gradient to State Buttons */
       background: linear-gradient(90deg, #3acf9a, #5bd9d7); 
-      /* FIX: Confirmed Snow White Text */
       color: white; 
       padding: 10px 15px;
-      /* FIX: Added prominent white border */
       border: 2px solid white; 
       border-radius: 5px;
       text-decoration: none;
-      font-weight: 700; /* Bold text */
+      font-weight: 700;
       font-size: 0.9rem;
       transition: all 0.2s; 
       white-space: nowrap; 
-      /* FIX: Added 3D shadow with subtle white glow and dark lift */
       box-shadow: 0 0 8px rgba(255, 255, 255, 0.2), 
                   3px 3px 6px rgba(0, 0, 0, 0.6); 
   }
 
   .state-button:hover {
       opacity: 0.9; 
-      /* Pressed effect: moves down and slightly changes shadow */
       transform: translateY(1px); 
       box-shadow: 0 0 4px rgba(255, 255, 255, 0.2), 
                   1px 1px 2px rgba(0, 0, 0, 0.6); 
@@ -160,11 +290,9 @@
       display: block;
       width: fit-content;
       margin: 0 auto 20px auto;
-      /* Main button gradient */
       background: linear-gradient(45deg, #14395d, #3acf9a, #b1dff2); 
       color: white; 
       font-weight: 700; 
-      
       padding: 12px 25px;
       border: 2px solid white;
       border-radius: 8px;
@@ -175,7 +303,6 @@
   }
 
   #main-audit-button:hover {
-      /* Adjusted hover effect to darken the gradient slightly */
       opacity: 0.9;
       transform: translateY(-2px);
       box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
@@ -184,7 +311,7 @@
   .contact-info {
       font-size: 1.1rem;
       font-weight: 500;
-      color: #daf7f3; /* Light Cyan */
+      color: #daf7f3;
       margin-top: 15px;
       line-height: 1.4;
       padding-top: 15px;
@@ -192,7 +319,7 @@
   }
   
   .contact-info a {
-      color: #ffffcc; /* Cyan link color */
+      color: #ffffcc;
       text-decoration: none;
       font-weight: 700;
       transition: color 0.3s;
@@ -202,7 +329,7 @@
       color: white;
   }
 
-  /* --- RESPONSIVENESS --- */
+  /* Responsiveness */
   @media (max-width: 600px) {
     .banner {
       font-size: 1.4rem; 
@@ -210,8 +337,16 @@
       word-break: break-word; 
     }
     
-    .emoji {
+    .emoji-left, .emoji-right {
       font-size: 2rem; 
+    }
+    
+    .emoji-left {
+      left: 5%;
+    }
+    
+    .emoji-right {
+      right: 5%;
     }
     
     .state-button {
@@ -227,6 +362,17 @@
         font-size: 1rem;
         padding: 10px 20px;
     }
+    
+    .modal-content {
+      margin: 10% auto;
+      padding: 20px;
+      width: 90%;
+    }
+    
+    #state-dropdown {
+      font-size: 1rem;
+      padding: 12px 15px;
+    }
   }
 
   @media (max-width: 380px) {
@@ -239,17 +385,30 @@
 <body>
 
 <div class="banner" id="audit">
-  The WebSwan State Attorney Compliance & ADA
+  The WebSwan Website States Attorney Compliance and ADA
   
-  <span class="emoji">♿</span>
-  <span class="emoji">⚖️</span>
-  <span class="emoji">🚨</span>
-  <span class="emoji">💼</span>
-  <span class="emoji">💰</span> 
+  <!-- Emojis on sides -->
+  <span class="emoji-left">♿</span>
+  <span class="emoji-left">⚖️</span>
+  <span class="emoji-right">🚨</span>
+  <span class="emoji-right">💼</span>
+  <span class="emoji-right">💰</span>
   
   <a href="https://taniad2169.github.io/WS-Audit/" target="_blank" id="main-audit-button">
       Click Here for Your Website Compliance and ADA Audit!
   </a>
+
+  <!-- State Dropdown -->
+  <div class="state-dropdown-container">
+    <select id="state-dropdown">
+      <option value="">Click Here to Select Your State for Compliance</option>
+      <option value="new-york">New York</option>
+      <option value="florida">Florida</option>
+      <option value="california">California</option>
+      <option value="texas">Texas</option>
+      <option value="georgia">Georgia</option>
+    </select>
+  </div>
 
   <div id="state-links">
       <a href="https://practiceguides.chambers.com/practice-guides/data-protection-privacy-2025/usa-georgia/trends-and-developments" target="_blank" class="state-button">Georgia: Click Here to View</a>
@@ -267,26 +426,38 @@
 
 </div>
 
+<!-- Modal for State Content -->
+<div id="state-modal" class="modal">
+  <div class="modal-content">
+    <button class="close-modal">&times;</button>
+    <div id="state-modal-content" class="state-content">
+      <!-- Content will be inserted here by JavaScript -->
+    </div>
+  </div>
+</div>
+
 <script>
   (function() {
     const banner = document.querySelector('.banner');
     if (!banner) return; 
     
-    const emojis = document.querySelectorAll('.emoji');
+    const emojisLeft = document.querySelectorAll('.emoji-left');
+    const emojisRight = document.querySelectorAll('.emoji-right');
+    const allEmojis = [...emojisLeft, ...emojisRight];
     
     let index = 0;
 
     function animateEmoji() {
-      if (emojis.length === 0) {
+      if (allEmojis.length === 0) {
           return;
       }
       
-      emojis.forEach(e => {
+      allEmojis.forEach(e => {
         e.style.opacity = 0;
         e.style.animation = 'none';
       });
 
-      const emoji = emojis[index];
+      const emoji = allEmojis[index];
       
       if (!emoji) {
           index = 0;
@@ -296,11 +467,193 @@
       
       emoji.style.animation = 'slideInScaleFade 3.5s ease forwards';
       
-      index = (index + 1) % emojis.length; 
+      index = (index + 1) % allEmojis.length; 
       setTimeout(animateEmoji, 1500);
     }
 
     animateEmoji();
+
+    // State Modal Functionality
+    const stateDropdown = document.getElementById('state-dropdown');
+    const stateModal = document.getElementById('state-modal');
+    const stateModalContent = document.getElementById('state-modal-content');
+    const closeModal = document.querySelector('.close-modal');
+
+    // State content data
+    const stateContent = {
+      'new-york': `
+        <h2>New York Website ADA and Privacy Compliance</h2>
+        
+        <p>New York consumer protection laws require websites to be truthful and not misleading, especially regarding privacy controls, and to use reasonable safeguards to protect personal data.</p>
+        
+        <h3>Key Compliance Areas</h3>
+        <ul>
+          <li><strong>Truthful privacy and data collection practices:</strong> Websites must accurately represent their data collection practices, including the use of cookies and other tracking technologies.</li>
+          <li><strong>Clear and accessible consent:</strong> Consent to collect personal data must be affirmative (opt-in), not implied. Pre-checked boxes are not acceptable.</li>
+          <li><strong>Accessible opt-out options:</strong> The process for users to opt out of data collection must be as clear and easy to use as the process to opt in.</li>
+          <li><strong>Accurate privacy controls:</strong> All privacy controls, such as cookie banners or opt-out buttons, must function as described and not mislead users.</li>
+          <li><strong>Data security:</strong> Businesses must implement reasonable administrative, technical, and physical safeguards to protect consumer data.</li>
+          <li><strong>Accurate advertising and sales practices:</strong> All advertising, sales, and special offers must be truthful and not deceptive.</li>
+        </ul>
+        
+        <h3>How to Ensure Compliance</h3>
+        <ul>
+          <li>Conduct regular audits of your website's privacy policies and functionality</li>
+          <li>Use clear, unambiguous language in privacy policies and consent banners</li>
+          <li>Implement robust security measures including strong authentication and encryption</li>
+        </ul>
+        
+        <div class="penalty-warning">
+          <h3>New York State Attorney General Penalty</h3>
+          <p>New York enforces several consumer protection laws applicable to websites, primarily through the NY Attorney General who can seek significant civil penalties for violations. Penalties vary by the specific law and can range up to $5,000 per violation under existing statutes, with potential for much higher fines under new legislation.</p>
+        </div>
+      `,
+      
+      'florida': `
+        <h2>Florida Website ADA and Privacy Compliance</h2>
+        
+        <h3>Florida State Digital Accessibility Requirements</h3>
+        <p>Florida Statute Title XIX Chapter 282.603 states that all state government branches must comply with Section 508 when developing, competitively procuring, maintaining, or using electronic information or information technology.</p>
+        
+        <p>Besides being legally compliant with Section 508, state websites must be actually usable to those with disabilities or face civil action as well.</p>
+        
+        <div class="penalty-warning">
+          <h3>Violation Penalties</h3>
+          <p>The Attorney General may commence a civil action for damages, injunctive relief, civil penalties not to exceed $10,000 per violation, and such other relief as may be appropriate under the laws of this state if the Attorney General has reasonable cause to believe that any person or group has repeatedly engaged in a pattern of discrimination or has raised an issue of great public interest.</p>
+        </div>
+      `,
+      
+      'california': `
+        <h2>California State Attorney Website ADA and Privacy Compliance</h2>
+        
+        <h3>California Privacy Protection Agency Announces 2025 Increases for CCPA Fines and Penalties</h3>
+        <div class="news-date">News: December 17, 2024</div>
+        
+        <p>In compliance with the California Consumer Privacy Act (CCPA), every other year the Agency adjusts fines and monetary thresholds in alignment with increases to the Consumer Price Index (CPI). The new amounts go into effect on January 1, 2025.</p>
+        
+        <p>Beginning in 2025, monetary damages, administrative fines, and civil penalties are being increased for violations of the CCPA.</p>
+        
+        <h3>CCPA Compliance for Cookies</h3>
+        <ul>
+          <li><strong>Inform users:</strong> Clearly state what cookies and other personal information are collected and for what purposes before or at the point of collection.</li>
+          <li><strong>Provide opt-out:</strong> Include a "Do Not Sell My Personal Information" link. Cookies should not be pre-selected to track users.</li>
+          <li><strong>Obtain consent:</strong> Provide an easy-to-use mechanism for users to accept or reject cookies, especially third-party cookies.</li>
+          <li><strong>Review and update:</strong> Update the privacy policy at least every 12 months and ensure it's easily accessible.</li>
+        </ul>
+        
+        <h3>Accessibility Compliance</h3>
+        <ul>
+          <li><strong>Ensure usability:</strong> All website elements, including cookie consent banners, must be accessible to users with disabilities.</li>
+          <li><strong>Address legal risk:</strong> Website inaccessibility risks class-action lawsuits with additional damages up to $4,000 per violation under California's Unruh Act.</li>
+          <li><strong>Proactive approach:</strong> Address accessibility requirements alongside CCPA compliance measures.</li>
+        </ul>
+        
+        <div class="penalty-warning">
+          <h3>Penalties for Non-Compliance</h3>
+          <ul>
+            <li><strong>Unintentional violations:</strong> Up to $2,500 per violation</li>
+            <li><strong>Intentional violations:</strong> Up to $7,500 per violation</li>
+            <li><strong>No total cap:</strong> The total fines can be very large with no cap on total amount</li>
+            <li><strong>Private right of action:</strong> Individuals can sue for statutory damages for data breaches due to inadequate security</li>
+          </ul>
+          <p><strong>Example:</strong> Sephora paid a $1.2 million settlement for alleged violations including failing to provide proper opt-out choices for data collected via tracking technologies like cookies.</p>
+        </div>
+      `,
+      
+      'texas': `
+        <h2>Texas Data Privacy and Security Act</h2>
+        
+        <div class="news-date">News July 25, 2024</div>
+        
+        <p>Texas residents now have more rights over their personal data. The Texas Data Privacy and Security Act (TDPSA) establishes new laws for collecting, storing, processing, and selling consumer information linked to a specific individual.</p>
+        
+        <p>TDPSA was passed as House Bill 4 during the regular session of the 88th Texas Legislature. The law became effective July 1, 2024. Section 541.055(e), will go into effect January 1, 2025.</p>
+        
+        <p>You can read the text of TDPSA in Chapter 541 of the Texas Business and Commerce Code. Additionally, the Texas Attorney General's Consumer Protection department has a brief explanation of the new law on their website.</p>
+        
+        <h3>What types of data are protected?</h3>
+        <p>The new law provides some protections for consumers' personal and sensitive data.</p>
+        
+        <p><strong>"Personal data"</strong> is defined in Section 541.001(19). It refers to any information that can be tracked to a specific individual. Publicly available information or information that can't be linked to a specific individual is not considered personal data.</p>
+        
+        <p><strong>"Sensitive data"</strong> is defined in Section 541.001(23). It includes personal information about the individual's race, ethnicity, religion, sexuality, health condition, immigration status, genetic data, and precise geolocation data. Personal data of a child under 13 is also considered sensitive data.</p>
+        
+        <div class="penalty-warning">
+          <h3>Penalties for Non-Compliance</h3>
+          <p>Penalties for non-compliant websites can be severe, including daily fines of up to $10,000 per violation, additional fines if identifying information is illegally retained, and a maximum penalty of $250,000 for a violation that results in a child being exposed to pornographic content.</p>
+          <p>For violations of consumer protection laws, a penalty of up to $10,000 per violation is possible, with a higher penalty of up to $250,000 if a consumer 65 or older is affected.</p>
+        </div>
+      `,
+      
+      'georgia': `
+        <h2>Georgia Website Compliance and Data Protection</h2>
+        
+        <h3>The Latest Legal Developments and Data Protection Challenges in the State of Georgia</h3>
+        
+        <p>Data privacy and cybersecurity have become increasingly critical issues for governments, businesses, and individuals alike. As the digital landscape continues to evolve, Georgia has begun taking steps to address these challenges through legislative measures and practical responses to significant cybersecurity incidents.</p>
+        
+        <p>The Georgia Consumer Privacy Protection Act (SB 473) and the Protecting Georgia's Children on Social Media Act reflect the state's efforts to regulate data privacy and protect its residents, albeit with an approach that some argue is overdue compared to other states like California and Virginia.</p>
+        
+        <p>Meanwhile, high-profile cybersecurity incidents in 2024, including ransomware attacks on Fulton County and the University System of Georgia, as well as attempted breaches of election systems, underscore the urgent need for robust cybersecurity measures and the importance of securing both public and private digital infrastructure.</p>
+        
+        <div class="penalty-warning">
+          <h3>Penalties for Non-Compliance in Georgia</h3>
+          <p>Penalties for non-compliant websites in Georgia can include fines and legal costs, though the specific penalties depend on the nature of the non-compliance.</p>
+          
+          <h4>ADA Compliance</h4>
+          <ul>
+            <li><strong>First violation:</strong> Up to $75,000 in fines</li>
+            <li><strong>Subsequent violations:</strong> Up to $150,000 in fines</li>
+            <li><strong>Other costs:</strong> Additional expenses can include attorney fees and website remediation</li>
+          </ul>
+          
+          <h4>Other Georgia Laws</h4>
+          <ul>
+            <li><strong>Computer Systems Protection Act:</strong> Prosecutors can seek fines up to $50,000 and imprisonment for crimes involving computer networks, such as fraud</li>
+            <li><strong>Georgia Fair Business Practices Act:</strong> Enforced by the Attorney General's Consumer Protection Division, this law prohibits unfair and deceptive practices and can lead to legal action</li>
+            <li><strong>Email Spam:</strong> Violations can incur penalties up to $50,000 and imprisonment, or misdemeanor penalties of up to $1,000 and up to 12 months in jail, depending on the severity</li>
+          </ul>
+        </div>
+        
+        <h3>What to Do</h3>
+        <ul>
+          <li>Ensure your website is compliant with relevant laws like the ADA and the Fair Business Practices Act to avoid penalties</li>
+          <li>If you receive a complaint, contact the Georgia Attorney General's Consumer Protection Division or a legal professional to understand your options</li>
+        </ul>
+      `
+    };
+
+    // Event listeners
+    stateDropdown.addEventListener('change', function() {
+      const selectedState = this.value;
+      if (selectedState && stateContent[selectedState]) {
+        stateModalContent.innerHTML = stateContent[selectedState];
+        stateModal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        // Reset dropdown
+        this.value = '';
+      }
+    });
+
+    closeModal.addEventListener('click', function() {
+      stateModal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    });
+
+    window.addEventListener('click', function(event) {
+      if (event.target === stateModal) {
+        stateModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        stateModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+      }
+    });
 
     // Floating sparkles
     function createSparkle() {
